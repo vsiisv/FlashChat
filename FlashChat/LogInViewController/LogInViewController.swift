@@ -11,7 +11,7 @@ class LogInViewController: UIViewController {
 	
 	private let emailTextField = UITextField(placeholder: "Email")
 	private let passwordTextField = UITextField(placeholder: "Password", isSecure: true)
-	private let registerButton = UIButton(title: "Log In", titleColor: .brandBlue!)
+	private let logInButton = UIButton(title: "Log In", titleColor: .brandLightBlue!)
 
 	private lazy var stackView: UIStackView = {
 		let stackView = UIStackView()
@@ -32,19 +32,19 @@ class LogInViewController: UIViewController {
 
 private extension LogInViewController {
 	func style() {
-		view.backgroundColor = .brandLightBlue
+		view.backgroundColor = .brandBlue
 	}
 	
 	func addSubviews() {
 		view.addSubview(stackView)
 		stackView.addArrangedSubview(emailTextField)
 		stackView.addArrangedSubview(passwordTextField)
-		view.addSubview(registerButton)
+		view.addSubview(logInButton)
 	}
 	
 	func setupConstraints() {
 		
-		registerButton.translatesAutoresizingMaskIntoConstraints = false
+		logInButton.translatesAutoresizingMaskIntoConstraints = false
 		stackView.translatesAutoresizingMaskIntoConstraints = false
 		
 		NSLayoutConstraint.activate([
@@ -54,10 +54,10 @@ private extension LogInViewController {
 			
 			emailTextField.heightAnchor.constraint(equalToConstant: 45),
 			
-			registerButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 20),
-			registerButton.heightAnchor.constraint(equalToConstant: 50),
-			registerButton.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 20),
-			registerButton.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -20),
+			logInButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 20),
+			logInButton.heightAnchor.constraint(equalToConstant: 50),
+			logInButton.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 20),
+			logInButton.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -20),
 			
 		])
 	}
