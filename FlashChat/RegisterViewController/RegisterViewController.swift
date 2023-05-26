@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FirebaseFirestore
+import FirebaseAuth
 
 class RegisterViewController: UIViewController {
 	
@@ -27,8 +29,31 @@ class RegisterViewController: UIViewController {
 		style()
 		addSubviews()
 		setupConstraints()
+		addTargetToButton()
 	}
 }
+
+// MARK: - Button action
+
+private extension RegisterViewController {
+	func addTargetToButton() {
+		registerButton.addTarget(self, action: #selector(register), for: .touchUpInside)
+	}
+	
+	@objc func register() {
+		guard let email = emailTextField.text, let password = passwordTextField.text else { return }
+		Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+			if let error {
+				print("ERROR - \(error.localizedDescription)")
+			} else {
+				let vc = ChatViewController()
+				self.navigationController?.pushViewController(vc, animated: true)
+			}
+		}
+	}
+}
+
+// MARK: - Layout and Style
 
 private extension RegisterViewController {
 	func style() {

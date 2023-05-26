@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FirebaseFirestore
+import FirebaseAuth
 
 class LogInViewController: UIViewController {
 	
@@ -27,8 +29,31 @@ class LogInViewController: UIViewController {
 		style()
 		addSubviews()
 		setupConstraints()
+		addTargets()
 	}
 }
+
+// MARK: - Button Actions
+
+private extension LogInViewController {
+	func addTargets() {
+		logInButton.addTarget(self, action: #selector(logIn), for: .touchUpInside)
+	}
+	
+	@objc func logIn() {
+		guard let email = emailTextField.text, let password = passwordTextField.text else { return }
+		Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+			if let error {
+				print("ERROR - \(error.localizedDescription)")
+			} else {
+				let vc = ChatViewController()
+				self.navigationController?.pushViewController(vc, animated: true)
+			}
+		}
+	}
+}
+
+// MARK: - Layout and Style
 
 private extension LogInViewController {
 	func style() {
