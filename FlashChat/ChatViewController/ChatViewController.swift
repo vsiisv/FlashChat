@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FirebaseFirestore
+import FirebaseAuth
 
 class ChatViewController: UIViewController {
 	
@@ -33,6 +35,20 @@ class ChatViewController: UIViewController {
 	}
 }
 
+// MARK: - Button Targets
+
+extension ChatViewController {
+	@objc func logOut() {
+		let firebaseAuth = Auth.auth()
+		do {
+			try firebaseAuth.signOut()
+			navigationController?.popToRootViewController(animated: true)
+		} catch let signOutError as NSError {
+			print("Error signing out: %@", signOutError)
+		}
+	}
+}
+
 // MARK: - TableViewDelegate and DataSource
 
 extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
@@ -56,6 +72,19 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
 private extension ChatViewController {
 	func style() {
 		view.backgroundColor = .brandPurple
+		
+		// Style Navigation Bar
+		title = "⚡️FlashChat"
+		navigationController?.navigationBar.tintColor = .white
+		let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+		navigationController?.navigationBar.titleTextAttributes = textAttributes
+		navigationItem.hidesBackButton = true
+		navigationItem.rightBarButtonItem = UIBarButtonItem(
+			title: "Log Out",
+			style: .plain,
+			target: self,
+			action: #selector(logOut)
+		)
 	}
 	
 	func addSubviews() {
