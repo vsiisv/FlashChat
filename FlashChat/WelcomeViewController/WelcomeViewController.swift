@@ -11,7 +11,7 @@ class WelcomeViewController: UIViewController {
 	
 	private lazy var titleLabel: UILabel = {
 		let label = UILabel()
-		label.text = "⚡️FlashChat"
+//		label.text = "⚡️FlashChat"
 		label.font = UIFont.systemFont(ofSize: 50, weight: .black)
 		label.textColor = .brandBlue
 		label.translatesAutoresizingMaskIntoConstraints = false
@@ -38,6 +38,43 @@ class WelcomeViewController: UIViewController {
 		style()
 		addSubviews()
 		setupConstraints()
+		addTargetsToButton()
+		animateTitle()
+	}
+}
+
+// MARK: - Methods
+
+extension WelcomeViewController {
+	func animateTitle() {
+		titleLabel.text = ""
+		let titleText = "⚡️FlashChat"
+		var charIndex = 0.0
+		for letter in titleText {
+			Timer.scheduledTimer(withTimeInterval: 0.1 * charIndex, repeats: false) { timer in
+				self.titleLabel.text?.append(letter)
+			}
+			charIndex += 1
+		}
+	}
+}
+
+// MARK: - Button Actions
+
+private extension WelcomeViewController {
+	func addTargetsToButton() {
+		registerButton.addTarget(self, action: #selector(registration), for: .touchUpInside)
+		logInButton.addTarget(self, action: #selector(logIn), for: .touchUpInside)
+	}
+	
+	@objc func registration() {
+		let vc = RegisterViewController()
+		navigationController?.pushViewController(vc, animated: true)
+	}
+	
+	@objc func logIn() {
+		let vc = LogInViewController()
+		navigationController?.pushViewController(vc, animated: true)
 	}
 }
 

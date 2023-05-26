@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol MessageViewDelegate {
+	
+}
+
 final class MessageView: UIView {
 	
 	private lazy var messageTextField: UITextField = {
@@ -22,6 +26,7 @@ final class MessageView: UIView {
 		let image = UIImage(systemName: "paperplane.fill")
 		button.setImage(image, for: .normal)
 		button.tintColor = .white
+		button.addTarget(self, action: #selector(sendMessage), for: .touchUpInside)
 		return button
 	}()
 	
@@ -42,6 +47,14 @@ final class MessageView: UIView {
 	
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
+	}
+}
+
+// MARK: - Actions
+
+private extension MessageView {
+	@objc func sendMessage() {
+		
 	}
 }
 
