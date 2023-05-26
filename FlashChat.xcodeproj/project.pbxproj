@@ -19,6 +19,9 @@
 		2F90B1612A1B61C800B9D4D7 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F90B1602A1B61C800B9D4D7 /* RegisterViewController.swift */; };
 		2F90B1632A1B6E5900B9D4D7 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F90B1622A1B6E5900B9D4D7 /* UITextField+Extension.swift */; };
 		2F90B1672A1F737400B9D4D7 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F90B1662A1F737400B9D4D7 /* LogInViewController.swift */; };
+		2F90B16A2A1F773500B9D4D7 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F90B1692A1F773500B9D4D7 /* ChatViewController.swift */; };
+		2F90B16D2A1F812100B9D4D7 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F90B16C2A1F812100B9D4D7 /* MessageView.swift */; };
+		2F90B16F2A2027DC00B9D4D7 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F90B16E2A2027DC00B9D4D7 /* ChatTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +39,9 @@
 		2F90B1602A1B61C800B9D4D7 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		2F90B1622A1B6E5900B9D4D7 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		2F90B1662A1F737400B9D4D7 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		2F90B1692A1F773500B9D4D7 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		2F90B16C2A1F812100B9D4D7 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
+		2F90B16E2A2027DC00B9D4D7 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +81,7 @@
 				2F90B15B2A1B4E3500B9D4D7 /* WelcomeViewController */,
 				2F90B15F2A1B61AE00B9D4D7 /* RegisterViewController */,
 				2F90B1652A1F734E00B9D4D7 /* LogInViewController */,
+				2F90B1682A1F771300B9D4D7 /* ChatViewController */,
 				2F90B1492A1B40E400B9D4D7 /* Assets.xcassets */,
 				2F90B14B2A1B40E400B9D4D7 /* LaunchScreen.storyboard */,
 				2F90B14E2A1B40E400B9D4D7 /* Info.plist */,
@@ -123,6 +130,24 @@
 				2F90B1662A1F737400B9D4D7 /* LogInViewController.swift */,
 			);
 			path = LogInViewController;
+			sourceTree = "<group>";
+		};
+		2F90B1682A1F771300B9D4D7 /* ChatViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2F90B16B2A1F80F700B9D4D7 /* Views */,
+				2F90B1692A1F773500B9D4D7 /* ChatViewController.swift */,
+			);
+			path = ChatViewController;
+			sourceTree = "<group>";
+		};
+		2F90B16B2A1F80F700B9D4D7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2F90B16C2A1F812100B9D4D7 /* MessageView.swift */,
+				2F90B16E2A2027DC00B9D4D7 /* ChatTableViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,11 +224,14 @@
 				2F90B1452A1B40E300B9D4D7 /* WelcomeViewController.swift in Sources */,
 				2F90B1412A1B40E300B9D4D7 /* AppDelegate.swift in Sources */,
 				2F90B1672A1F737400B9D4D7 /* LogInViewController.swift in Sources */,
+				2F90B16D2A1F812100B9D4D7 /* MessageView.swift in Sources */,
 				2F90B1612A1B61C800B9D4D7 /* RegisterViewController.swift in Sources */,
 				2F90B15A2A1B445700B9D4D7 /* UIImage+Extension.swift in Sources */,
 				2F90B1432A1B40E300B9D4D7 /* SceneDelegate.swift in Sources */,
 				2F90B1632A1B6E5900B9D4D7 /* UITextField+Extension.swift in Sources */,
 				2F90B1572A1B443600B9D4D7 /* UIColor+Extension.swift in Sources */,
+				2F90B16F2A2027DC00B9D4D7 /* ChatTableViewCell.swift in Sources */,
+				2F90B16A2A1F773500B9D4D7 /* ChatViewController.swift in Sources */,
 				2F90B15E2A1B51D900B9D4D7 /* UIButton+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
