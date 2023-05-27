@@ -31,6 +31,7 @@
 		2F90B1832A20862C00B9D4D7 /* FirebaseInstallations in Frameworks */ = {isa = PBXBuildFile; productRef = 2F90B1822A20862C00B9D4D7 /* FirebaseInstallations */; };
 		2F90B1852A20862C00B9D4D7 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 2F90B1842A20862C00B9D4D7 /* FirebaseMessaging */; };
 		2F90B1872A20862C00B9D4D7 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 2F90B1862A20862C00B9D4D7 /* FirebaseStorage */; };
+		2F90B18B2A20C66C00B9D4D7 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F90B18A2A20C66C00B9D4D7 /* Message.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		2F90B16C2A1F812100B9D4D7 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		2F90B16E2A2027DC00B9D4D7 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
 		2F90B1702A2072A200B9D4D7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2F90B18A2A20C66C00B9D4D7 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,12 +96,10 @@
 			isa = PBXGroup;
 			children = (
 				2F90B1582A1B443D00B9D4D7 /* Extensions */,
+				2F90B1892A20C63E00B9D4D7 /* Model */,
+				2F90B1882A20C62100B9D4D7 /* Controllers */,
 				2F90B1402A1B40E300B9D4D7 /* AppDelegate.swift */,
 				2F90B1422A1B40E300B9D4D7 /* SceneDelegate.swift */,
-				2F90B15B2A1B4E3500B9D4D7 /* WelcomeViewController */,
-				2F90B15F2A1B61AE00B9D4D7 /* RegisterViewController */,
-				2F90B1652A1F734E00B9D4D7 /* LogInViewController */,
-				2F90B1682A1F771300B9D4D7 /* ChatViewController */,
 				2F90B1492A1B40E400B9D4D7 /* Assets.xcassets */,
 				2F90B14B2A1B40E400B9D4D7 /* LaunchScreen.storyboard */,
 				2F90B14E2A1B40E400B9D4D7 /* Info.plist */,
@@ -167,6 +167,25 @@
 				2F90B16E2A2027DC00B9D4D7 /* ChatTableViewCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		2F90B1882A20C62100B9D4D7 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2F90B15B2A1B4E3500B9D4D7 /* WelcomeViewController */,
+				2F90B15F2A1B61AE00B9D4D7 /* RegisterViewController */,
+				2F90B1652A1F734E00B9D4D7 /* LogInViewController */,
+				2F90B1682A1F771300B9D4D7 /* ChatViewController */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		2F90B1892A20C63E00B9D4D7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2F90B18A2A20C66C00B9D4D7 /* Message.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,6 +282,7 @@
 				2F90B1432A1B40E300B9D4D7 /* SceneDelegate.swift in Sources */,
 				2F90B1632A1B6E5900B9D4D7 /* UITextField+Extension.swift in Sources */,
 				2F90B1572A1B443600B9D4D7 /* UIColor+Extension.swift in Sources */,
+				2F90B18B2A20C66C00B9D4D7 /* Message.swift in Sources */,
 				2F90B16F2A2027DC00B9D4D7 /* ChatTableViewCell.swift in Sources */,
 				2F90B16A2A1F773500B9D4D7 /* ChatViewController.swift in Sources */,
 				2F90B15E2A1B51D900B9D4D7 /* UIButton+Extension.swift in Sources */,

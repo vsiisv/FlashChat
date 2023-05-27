@@ -27,7 +27,7 @@ class ChatViewController: UIViewController {
 		tableView.delegate = self
 		tableView.dataSource = self
 		
-		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+		tableView.register(ChatTableViewCell.self, forCellReuseIdentifier: "cell")
 		
 		style()
 		addSubviews()
@@ -51,18 +51,20 @@ extension ChatViewController {
 
 // MARK: - TableViewDelegate and DataSource
 
-extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
+extension ChatViewController: UITableViewDelegate {
+	
+}
+
+extension ChatViewController: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return 5
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+		let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ChatTableViewCell
 		
-		var content = cell.defaultContentConfiguration()
-		content.text = "1"
+		cell.messageLabel.text = "1"
 		
-		cell.contentConfiguration = content
 		return cell
 	}
 }
@@ -72,6 +74,9 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
 private extension ChatViewController {
 	func style() {
 		view.backgroundColor = .brandPurple
+		
+		tableView.separatorStyle = .none
+		tableView.allowsSelection = false
 		
 		// Style Navigation Bar
 		title = "⚡️FlashChat"
