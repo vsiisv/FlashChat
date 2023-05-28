@@ -11,6 +11,8 @@ import FirebaseAuth
 
 class ChatViewController: UIViewController {
 	
+	let db = Firestore.firestore()
+	
 	private let messageView = MessageView()
 	
 	private lazy var tableView: UITableView = {
@@ -24,6 +26,8 @@ class ChatViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		messageView.delegate = self
+		
 		tableView.delegate = self
 		tableView.dataSource = self
 		
@@ -33,6 +37,24 @@ class ChatViewController: UIViewController {
 		addSubviews()
 		setupConstraints()
 	}
+}
+
+// MARK: - SendMessageDelegate
+
+extension ChatViewController: MessageViewDelegate {
+	
+	func sendMessage(textBody: String?) {
+		if let messageBody = textBody, let messageSender = Auth.auth().currentUser?.email {
+			db.collection("messages").addDocument(data: ["sender": messageSender, "body": messageBody]) { error in
+				if let error {
+					print("There was an issue saving data to firestore, \(error)")
+				} else {
+					print("Successfully saved data.")
+				}
+			}
+		}
+	}
+	
 }
 
 // MARK: - Button Targets

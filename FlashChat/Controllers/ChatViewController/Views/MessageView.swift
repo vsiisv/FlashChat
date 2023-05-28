@@ -7,11 +7,13 @@
 
 import UIKit
 
-protocol MessageViewDelegate {
-	
+protocol MessageViewDelegate: AnyObject {
+	func sendMessage(textBody: String?)
 }
 
 final class MessageView: UIView {
+	
+	weak var delegate: MessageViewDelegate?
 	
 	private lazy var messageTextField: UITextField = {
 		let textField = UITextField()
@@ -54,7 +56,7 @@ final class MessageView: UIView {
 
 private extension MessageView {
 	@objc func sendMessage() {
-		
+		delegate?.sendMessage(textBody: messageTextField.text)
 	}
 }
 
