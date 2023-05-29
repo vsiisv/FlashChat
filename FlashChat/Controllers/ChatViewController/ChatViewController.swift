@@ -11,7 +11,9 @@ import FirebaseAuth
 
 class ChatViewController: UIViewController {
 	
-	let db = Firestore.firestore()
+	private var messages = [Message]()
+	
+	private let db = Firestore.firestore()
 	
 	private let messageView = MessageView()
 	
@@ -36,6 +38,37 @@ class ChatViewController: UIViewController {
 		style()
 		addSubviews()
 		setupConstraints()
+		
+		loadMessages()
+	}
+}
+
+// MARK: - Methods
+
+extension ChatViewController {
+	func loadMessages() {
+		db.collection("messages")
+			.order(by: "date")
+			.addSnapshotListener { querySnapshot, error in
+			
+			self.messages = []
+			
+			if let error {
+				print("There was an issue retrieving data from Firestore. \(error)")
+			} else {
+				guard let snapshotDocuments = querySnapshot?.documents else { return }
+				for doc in snapshotDocuments {
+					let data = doc.data()
+					guard let sender = data["sender"] as? String, let messageBody = data["body"] as? String else { return }
+					let newMessage = Message(sender: sender, body: messageBody)
+					self.messages.append(newMessage)
+					
+					DispatchQueue.main.async {
+						self.tableView.reloadData()
+					}
+				}
+			}
+		}
 	}
 }
 
@@ -45,7 +78,11 @@ extension ChatViewController: MessageViewDelegate {
 	
 	func sendMessage(textBody: String?) {
 		if let messageBody = textBody, let messageSender = Auth.auth().currentUser?.email {
-			db.collection("messages").addDocument(data: ["sender": messageSender, "body": messageBody]) { error in
+			db.collection("messages").addDocument(data: [
+				"sender": messageSender,
+				"body": messageBody,
+				"date": Date().timeIntervalSince1970
+			]) { error in
 				if let error {
 					print("There was an issue saving data to firestore, \(error)")
 				} else {
@@ -79,13 +116,13 @@ extension ChatViewController: UITableViewDelegate {
 
 extension ChatViewController: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 5
+		return messages.count
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ChatTableViewCell
 		
-		cell.messageLabel.text = "1"
+		cell.messageLabel.text = messages[indexPath.row].body
 		
 		return cell
 	}

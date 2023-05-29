@@ -30,6 +30,9 @@ class LogInViewController: UIViewController {
 		addSubviews()
 		setupConstraints()
 		addTargets()
+		
+		emailTextField.text = "1@2.com"
+		passwordTextField.text = "123456"
 	}
 }
 
