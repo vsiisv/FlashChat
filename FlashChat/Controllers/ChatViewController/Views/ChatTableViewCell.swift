@@ -9,15 +9,22 @@ import UIKit
 
 class ChatTableViewCell: UITableViewCell {
 
-	private lazy var viewCell: UIView = {
+	lazy var viewCell: UIView = {
 		let view = UIView()
 		view.backgroundColor = .brandPurple
 		return view
 	}()
 	
-	private lazy var avatarImageView: UIImageView = {
+	lazy var rightAvatarImageView: UIImageView = {
 		let imageView = UIImageView()
 		let image = UIImage.meAvatar
+		imageView.image = image
+		return imageView
+	}()
+	
+	lazy var leftAvatarImageView: UIImageView = {
+		let imageView = UIImageView()
+		let image = UIImage.yourAvatar
 		imageView.image = image
 		return imageView
 	}()
@@ -31,7 +38,7 @@ class ChatTableViewCell: UITableViewCell {
 		return stackView
 	}()
 	
-	lazy var messageLabel: UILabel = {
+	var messageLabel: UILabel = {
 		let label = UILabel()
 		label.numberOfLines = 0
 		return label
@@ -41,10 +48,17 @@ class ChatTableViewCell: UITableViewCell {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
 		addSubviews()
 		setupConstraints()
+		
+//		viewCell.layer.cornerRadius = viewCell.frame.size.height / 2
 	}
 	
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
+	}
+	
+	override class func awakeFromNib() {
+		super.awakeFromNib()
+		
 	}
 }
 
@@ -53,9 +67,10 @@ class ChatTableViewCell: UITableViewCell {
 private extension ChatTableViewCell {
 	func addSubviews() {
 		contentView.addSubview(stackView)
+		stackView.addArrangedSubview(leftAvatarImageView)
 		stackView.addArrangedSubview(viewCell)
 		viewCell.addSubview(messageLabel)
-		stackView.addArrangedSubview(avatarImageView)
+		stackView.addArrangedSubview(rightAvatarImageView)
 	}
 	
 	func setupConstraints() {
@@ -69,8 +84,11 @@ private extension ChatTableViewCell {
 			stackView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10),
 			stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
 			
-			avatarImageView.heightAnchor.constraint(equalToConstant: 40),
-			avatarImageView.widthAnchor.constraint(equalToConstant: 40),
+			rightAvatarImageView.heightAnchor.constraint(equalToConstant: 40),
+			rightAvatarImageView.widthAnchor.constraint(equalToConstant: 40),
+			
+			leftAvatarImageView.heightAnchor.constraint(equalToConstant: 40),
+			leftAvatarImageView.widthAnchor.constraint(equalToConstant: 40),
 			
 			messageLabel.topAnchor.constraint(equalTo: viewCell.topAnchor, constant: 10),
 			messageLabel.bottomAnchor.constraint(equalTo: viewCell.bottomAnchor, constant: -10),

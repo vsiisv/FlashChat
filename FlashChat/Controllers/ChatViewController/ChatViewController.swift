@@ -65,6 +65,8 @@ extension ChatViewController {
 					
 					DispatchQueue.main.async {
 						self.tableView.reloadData()
+						let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
+						self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
 					}
 				}
 			}
@@ -120,9 +122,23 @@ extension ChatViewController: UITableViewDataSource {
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ChatTableViewCell
+		let message = messages[indexPath.row]
 		
-		cell.messageLabel.text = messages[indexPath.row].body
+		let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ChatTableViewCell
+		cell.viewCell.layer.cornerRadius = cell.viewCell.frame.size.height / 3
+		cell.messageLabel.text = message.body
+		
+		if message.sender == Auth.auth().currentUser?.email {
+			cell.leftAvatarImageView.isHidden = true
+			cell.rightAvatarImageView.isHidden = false
+			cell.viewCell.backgroundColor = UIColor.brandLightPurple
+			cell.messageLabel.textColor = UIColor.brandPurple
+		} else {
+			cell.leftAvatarImageView.isHidden = false
+			cell.rightAvatarImageView.isHidden = true
+			cell.viewCell.backgroundColor = UIColor.brandPurple
+			cell.messageLabel.textColor = UIColor.brandLightPurple
+		}
 		
 		return cell
 	}
@@ -137,11 +153,21 @@ private extension ChatViewController {
 		tableView.separatorStyle = .none
 		tableView.allowsSelection = false
 		
-		// Style Navigation Bar
+		styleOfNavigationBar()
+	}
+	
+	func styleOfNavigationBar() {
 		title = "⚡️FlashChat"
 		navigationController?.navigationBar.tintColor = .white
-		let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-		navigationController?.navigationBar.titleTextAttributes = textAttributes
+		
+		let navigationBarAppearance = UINavigationBarAppearance()
+		navigationBarAppearance.backgroundColor = UIColor.brandPurple
+		navigationBarAppearance.titleTextAttributes = [
+			.foregroundColor: UIColor.white,
+			.font: UIFont.systemFont(ofSize: 24)
+		]
+		navigationController?.navigationBar.standardAppearance = navigationBarAppearance
+		navigationController?.navigationBar.scrollEdgeAppearance = navigationBarAppearance
 		navigationItem.hidesBackButton = true
 		navigationItem.rightBarButtonItem = UIBarButtonItem(
 			title: "Log Out",

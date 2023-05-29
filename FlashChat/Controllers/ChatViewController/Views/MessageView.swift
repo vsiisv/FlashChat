@@ -57,6 +57,7 @@ final class MessageView: UIView {
 private extension MessageView {
 	@objc func sendMessage() {
 		delegate?.sendMessage(textBody: messageTextField.text)
+		messageTextField.text = ""
 	}
 }
 
@@ -82,7 +83,7 @@ private extension MessageView {
 			stackView.topAnchor.constraint(equalTo: topAnchor),
 			stackView.leftAnchor.constraint(equalTo: leftAnchor),
 			stackView.rightAnchor.constraint(equalTo: rightAnchor),
-			stackView.bottomAnchor.constraint(equalTo: bottomAnchor)
+			stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20)
 		])
 	}
 }
