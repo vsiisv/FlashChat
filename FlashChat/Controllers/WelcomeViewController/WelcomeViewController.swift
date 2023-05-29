@@ -41,6 +41,14 @@ class WelcomeViewController: UIViewController {
 		addTargetsToButton()
 		animateTitle()
 	}
+	
+	override func viewWillAppear(_ animated: Bool) {
+		navigationController?.isNavigationBarHidden = true
+	}
+	
+	override func viewWillDisappear(_ animated: Bool) {
+		navigationController?.isNavigationBarHidden = false
+	}
 }
 
 // MARK: - Methods

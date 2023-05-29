@@ -33,7 +33,7 @@ class ChatTableViewCell: UITableViewCell {
 		let stackView = UIStackView()
 		stackView.axis = .horizontal
 		stackView.spacing = 10
-		stackView.alignment = .fill
+		stackView.alignment = .top
 		stackView.distribution = .fill
 		return stackView
 	}()
@@ -83,6 +83,7 @@ private extension ChatTableViewCell {
 			stackView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10),
 			stackView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10),
 			stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+			stackView.heightAnchor.constraint(greaterThanOrEqualToConstant: 44),
 			
 			rightAvatarImageView.heightAnchor.constraint(equalToConstant: 40),
 			rightAvatarImageView.widthAnchor.constraint(equalToConstant: 40),
@@ -93,7 +94,7 @@ private extension ChatTableViewCell {
 			messageLabel.topAnchor.constraint(equalTo: viewCell.topAnchor, constant: 10),
 			messageLabel.bottomAnchor.constraint(equalTo: viewCell.bottomAnchor, constant: -10),
 			messageLabel.leftAnchor.constraint(equalTo: viewCell.leftAnchor, constant: 10),
-			messageLabel.rightAnchor.constraint(equalTo: viewCell.rightAnchor, constant: -10)
+			messageLabel.rightAnchor.constraint(equalTo: viewCell.rightAnchor, constant: -10),
 		])
 	}
 }
